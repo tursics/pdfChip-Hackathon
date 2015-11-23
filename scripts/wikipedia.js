@@ -14,7 +14,7 @@
 //     use content as you want
 // });
 
-function getAPIWikipiaURL( wikipediaURL, prop)
+function getAPIWikipediaURL( wikipediaURL, prop)
 {
 	var parts = wikipediaURL.split( '/');
 	if(( 5 == parts.length) && (parts[3] == 'wiki')) {
@@ -25,9 +25,19 @@ function getAPIWikipiaURL( wikipediaURL, prop)
 	return parts.join( '/');
 }
 
+function getAPIWikipediaImageURL( wikipediaURL, imageNamespace, prop)
+{
+	var parts = wikipediaURL.split( '/');
+	if(( 5 == parts.length) && (parts[3] == 'wiki')) {
+		parts[3] = 'w';
+		parts[4] = 'api.php?action=query&titles=File:' + imageNamespace + '&prop=' + prop + '&format=json&callback=?';
+	}
+	return parts.join( '/');
+}
+
 function getWikipediaWikitext( wikipediaURL, callbackFn)
 {
-	var url = getAPIWikipiaURL( wikipediaURL, 'revisions');
+	var url = getAPIWikipediaURL( wikipediaURL, 'revisions');
 
 	$.getJSON( url, {}).done(function( data) {
 		var title = '';
@@ -44,7 +54,7 @@ function getWikipediaWikitext( wikipediaURL, callbackFn)
 
 function getWikipediaHTML( wikipediaURL, callbackFn)
 {
-	var url = getAPIWikipiaURL( wikipediaURL, 'extracts');
+	var url = getAPIWikipediaURL( wikipediaURL, 'extracts');
 //	console.log( url);
 
 	$.getJSON( url, {}).done(function( data) {
@@ -64,7 +74,7 @@ function getWikipediaHTML( wikipediaURL, callbackFn)
 
 function getWikipediaLinks( wikipediaURL, callbackFn)
 {
-	var url = getAPIWikipiaURL( wikipediaURL, 'links&limit=max');
+	var url = getAPIWikipediaURL( wikipediaURL, 'links&limit=max');
 	var list = new Array();
 
 	$.getJSON( url, {}).done(function( data) {
@@ -73,11 +83,53 @@ function getWikipediaLinks( wikipediaURL, callbackFn)
 		for( var page in data.query.pages) {
 			title = data.query.pages[page].title;
 			content = data.query.pages[page].links;
-			for( var i = 0; i < content.length; ++i) {
-				list.push( content[i].title);
+
+			if( typeof content !== 'undefined') {
+				for( var i = 0; i < content.length; ++i) {
+					list.push( content[i].title);
+				}
 			}
 		}
 
 		callbackFn( title, list);
+	});
+}
+
+function getWikipediaImages( wikipediaURL, callbackFn)
+{
+	var url = getAPIWikipediaURL( wikipediaURL, 'images');
+	var list = new Array();
+
+	$.getJSON( url, {}).done(function( data) {
+		var title = '';
+		var content = '';
+		for( var page in data.query.pages) {
+			title = data.query.pages[page].title;
+			content = data.query.pages[page].images;
+
+			if( typeof content !== 'undefined') {
+				for( var i = 0; i < content.length; ++i) {
+					list.push( content[i].title);
+				}
+			}
+		}
+
+		callbackFn( title, list);
+	});
+}
+
+function getWikipediaImageFile( site, imageNamespace, callbackFn)
+{
+	var image = imageNamespace.split( ':');
+	var url = getAPIWikipediaImageURL( site, image[ image.length - 1], 'imageinfo&iiprop=url');
+	var list = new Array();
+
+	$.getJSON( url, {}).done(function( data) {
+		var content = '';
+		for( var page in data.query.pages) {
+			content = data.query.pages[page].imageinfo[0].url;
+		}
+
+		callbackFn( content);
 	});
 }

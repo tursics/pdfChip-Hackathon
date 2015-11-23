@@ -22,6 +22,14 @@ body {
 	font-size: 12pt;
 }
 
+a {
+	color: black;
+	color: -cchip-cmyk(0.0, 0.0, 0.0, 1.0);
+	font-family: FreeUniversal;
+	font-size: 12pt;
+	text-decoration: none;
+}
+
 .toc-1 {
 	font-size: 20pt;
 	font-weight: bold;
@@ -29,4 +37,11 @@ body {
 
 #coverpage {
 	page-break-after: always;
+	margin-left: auto; margin-right: auto;
+	text-align: center;
+}
+
+.document-title {
+	font-size: 36pt;
+	font-weight: bold;
 }

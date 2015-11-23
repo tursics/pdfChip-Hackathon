@@ -9,7 +9,8 @@ function insertPage( wikipediaURL, callbackFn)
 //	getWikipediaWikitext( wikipediaURL, function( title, content) {
 	getWikipediaHTML( wikipediaURL, function( title, content) {
 		var theTitleElement = $( "#title" );
-		theTitleElement.html( title);
+
+		theTitleElement.html( '<div id="article' + encodeURIComponent( title.replace(/\s+/g, '')) + '">' + title + '</div>');
 
 		var theContentElement = $( "#content" );
 		theContentElement.html( content);
@@ -46,19 +47,14 @@ function insertContent( wikipediaURL, callbackFn)
 
 //-----------------------------------------------------------------------
 
-//var site = 'https://nl.wikipedia.org/wiki/Pingu%C3%AFns';
-//var site = 'https://en.wikipedia.org/wiki/Penguin';
-var site = 'https://en.wikipedia.org/wiki/Bird';
-//var site = 'https://nl.wikipedia.org/wiki/Portaal:Vogels';
-
 if( typeof cchip === 'undefined') {
-	insertContent( site, function() {
+	insertContent( baseLink, function() {
 	});
 } else {
 	function cchipPrintLoop()
 	{
 		cchip.beginPrinting();
-		insertContent( site, function() {
+		insertContent( baseLink, function() {
 			cchip.endPrinting();
 		});
 	}
