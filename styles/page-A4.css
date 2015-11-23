@@ -13,11 +13,8 @@
 
 	/* Size and width of the page in total 20 mm wider and heigher than trim box */
 	size: 230mm 317mm;
-}
 
-body {
-	
-	height: 313mm;
+	margin-top: 15mm; margin-bottom: 15mm;
 }
 
 /* Make sure the object with id "bleedbox" coïncides with the bleed box */
