@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+/* Define the page as A4 with a 3 mm bleed and a 10 mm total area outside the bleedbox for additional marks and content */
+@page {
+	
+	/* Trim box set to A4 with the lower left corner at 10mm, 10mm */
+	/* Crop box set to the trim box */
+	-cchip-trimbox: 10mm 10mm 210mm 297mm;
+	-cchip-cropbox: 0mm 0mm 230mm 317mm;
+	
+	/* Bleedbox 6mm wider and higher than trim box and positioned 3mm, 3mm to the left and bottom */
+	-cchip-bleedbox: 7mm 7mm 216mm 303mm;
+
+	/* Size and width of the page in total 20 mm wider and heigher than trim box */
+	size: 230mm 317mm;
+}
+
+body {
+	
+	height: 313mm;
+}
+
+/* Make sure the object with id "bleedbox" coïncides with the bleed box */
+#bleedbox {
+	
+	position: absolute;
+	left: 0mm;
+	top: 0mm;
+	width: 216mm;
+	height: 303mm;
+	margin: 7mm;
+}
+
+/* Make sure the object with id "trimbox" coïncides with the trim box, this
+   definition counts on the fact that this element will be inclosed within
+   an element with id="bleedbox" */
+#trimbox {
+	
+	position: absolute;
+	left: 0mm;
+	top: 0mm;
+	width: 210mm;
+	height: 297mm;
+	margin: 3mm; 	
+}
+
+/* Classes to put objects in the correct spot to generate bleed */
+.bleed-left {
+	
+	position: absolute;
+	left: -3mm;
+}
+
+.bleed-top {
+	
+	position: absolute;
+	top: -3mm;
+}
+
+.bleed-right {
+	
+	position: absolute;
+	right: -3mm;
+}
+
+.bleed-bottom {
+	
+	position: absolute;
+	bottom: -3mm;
+}

@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+body {
+}
+
+#bleedbox {
+	background-color: #E2D48D;
+}
+
+p {
+	color: black;	
+}
+
+#logo {
+	position: absolute;
+	left: 0mm;
+	top: 0mm;
+}
+
+#logo-line {
+	top: 45mm;	
+	height: 1mm;
+}
+
+.spot-callas-red-100p {
+	color: red;
+	color: -cchip-cmyk('callas Red', 0.21,0.96,0.68,0.5,1.0);
+}
+
+.background-spot-callas-red-100p {
+	background-color: red;
+	background-color: -cchip-cmyk('callas Red', 0.21,0.96,0.68,0.5,1.0);
+}
+
+#content {
+	position: absolute;
+	left: 10mm;
+	top: 55mm;
+	width: 189mm;
+	height: 232mm;
+}
+
+p.prime {
+	color: red;
+	color: -cchip-cmyk('callas Red', 0.21,0.96,0.68,0.5,1.0);
+	display: inline-block;
+	float: left;
+	margin-left: 2mm;
+	margin-right: 3mm;
+}
