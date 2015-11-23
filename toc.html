@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>TOC</title>
+	<link rel="stylesheet" href="styles/page-A4.css"  type="text/css" />
+	<link rel="stylesheet" href="styles/toc.css"  type="text/css" />
+    
+    <!-- Specify that we want PDF/X-1a, with ISO Coated v2 as output intent -->
+    <meta property="cchip-pdfx" content="PDF/X-1a">
+	<link rel="cchip-outputintent" href="./templates/outputintent.pdf"/>
+    
+    <!-- Add Ghent Workgroup job ticket XMP field -->
+	<meta property="" content="callas documentation" data-cchip-xmp-ns="http://www.gwg.org/jt/xmlns/"  
+  	  	  data-cchip-xmp-prefix="gwg-at" data-cchip-xmp-property="Publication" data-cchip-xmp-type="Text">
+    
+    <!-- Include scripts -->
+    <script src="./scripts/jquery-2.1.1.min.js"></script>
+	<script src="./scripts/wikipedia.js"></script>
+    <script src="./scripts/toc.js"></script>
+    <script src="./data/collector.json"></script>
+    
+</head>
+<body>
+	<div id="bleedbox">
+        <div id="trimbox">
+        
+            <div id="coverpage">
+                <p class="Document-title">Title</p>
+            </div>
+
+            <div id="toc">
+            </div>         
+          
+        </div>
+    </div>
+</body>
+</html>

@@ -1,10 +1,10 @@
 //-----------------------------------------------------------------------
 // Example JavaScript document
 //---------
-// Copyright: © 2014 - David van Driessche, Four Pees
+// Copyright: © 2014 - David van Driessche, Four Pees, and some more
 //-----------------------------------------------------------------------
 
-function getContent( wikipediaURL, callbackFn)
+function insertPage( wikipediaURL, callbackFn)
 {
 //	getWikipediaWikitext( wikipediaURL, function( title, content) {
 	getWikipediaHTML( wikipediaURL, function( title, content) {
@@ -22,48 +22,46 @@ function getContent( wikipediaURL, callbackFn)
 	});
 }
 
-// Add prime numbers to the "content" element
-//
-function addPrimesToContentElement() {
+//-----------------------------------------------------------------------
 
-	// The content element
-	var theContentElement = $( "#content" );
-	
-	// Loop and add prime numbers
-	for ( var theIndex = 2; theIndex < 1800; theIndex++ ) {
-	
-		if (isPrime(theIndex)) {
+function insertContent( wikipediaURL, callbackFn)
+{
+	insertPage( wikipediaURL, function() {
+		getWikipediaLinks( wikipediaURL, function( title, list) {
+			var index = 0;
 
-		  $( '<p>', {
-				  class: 'prime',
-				  text: " " + theIndex
-			  }).appendTo( theContentElement );
-
-		}
-	}
+			function recursivePage()
+			{
+				++index;
+				if( index < list.length) {
+					insertPage( 'https://en.wikipedia.org/wiki/' + list[index], recursivePage);
+				} else {
+					callbackFn();
+				}
+			}
+			insertPage( 'https://en.wikipedia.org/wiki/' + list[index], recursivePage);
+		});
+	});
 }
 
-// Small utility function to determine if a number is prime
-//
-function isPrime(n) {
- if (isNaN(n) || !isFinite(n) || n%1 || n<2) return false; 
- if (n%2==0) return (n==2);
- var m=Math.sqrt(n);
- for (var i=3;i<=m;i+=2) {
-  if (n%i==0) return false;
- }
- return true;
-}
+//-----------------------------------------------------------------------
+
+//var site = 'https://nl.wikipedia.org/wiki/Pingu%C3%AFns';
+//var site = 'https://en.wikipedia.org/wiki/Penguin';
+var site = 'https://en.wikipedia.org/wiki/Bird';
+//var site = 'https://nl.wikipedia.org/wiki/Portaal:Vogels';
 
 if( typeof cchip === 'undefined') {
-	getContent( 'https://nl.wikipedia.org/wiki/Pingu%C3%AFns', function() {
+	insertContent( site, function() {
 	});
 } else {
 	function cchipPrintLoop()
 	{
 		cchip.beginPrinting();
-		getContent( 'https://nl.wikipedia.org/wiki/Pingu%C3%AFns', function() {
+		insertContent( site, function() {
 			cchip.endPrinting();
 		});
 	}
 }
+
+//-----------------------------------------------------------------------

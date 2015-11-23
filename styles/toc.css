@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'FreeUniversal';
+    src: url('../fonts/freeuniversal-regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FreeUniversal';
+    src: url('../fonts/freeuniversal-bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+	background-color: transparent;
+	color: black;
+	color: -cchip-cmyk(0.0, 0.0, 0.0, 1.0);
+	font-family: FreeUniversal;
+	font-size: 12pt;
+}
+
+.toc-1 {
+	font-size: 20pt;
+	font-weight: bold;
+}
+
+#coverpage {
+	page-break-after: always;
+}
