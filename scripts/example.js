@@ -17,10 +17,13 @@ function insertPage( wikipediaURL, callbackFn)
 		theContentElement.html( content);
 
 		if( typeof cchip !== 'undefined') {
-			cchip.printPages();
+			$( 'body').waitForImages( function() {
+				cchip.printPages();
+				callbackFn();
+			});
+		} else {
+			callbackFn();
 		}
-
-		callbackFn();
 	});
 }
 
@@ -72,9 +75,7 @@ if( typeof cchip === 'undefined') {
 	{
 		cchip.beginPrinting();
 		insertContent( baseLink, function() {
-//			$( '#content').waitForImages( function() {
-				cchip.endPrinting();
-//			});
+			cchip.endPrinting();
 		});
 	}
 }
