@@ -33,6 +33,7 @@ b {
 h2 {
 	margin: 0;
 	padding: 0;
+	margin-bottom: 5mm;
 }
 
 #title {
@@ -50,4 +51,53 @@ h2 {
 
 #content {
 }
+
+div.hatnote {
+	display: none;
+}
+
+table.infobox {
+	float: right;
+	margin-left: 5mm;
+	border: .5mm solid #6216af;
+	border-collapse: collapse;
+
+}
+
+table.infobox th {
+	background-color: #6216af !important;
+	color: white;
+}
+
+table.infobox th a {
+	color: white;
+}
+
+span.mw-editsection {
+	display: none;
+}
+
+div.thumb.tright {
+	float: left;
+	margin-right: 5mm;
+	margin-bottom: 5mm;
+}
+
+div.thumb.tright + p {
+	clear: both;
+}
+
+table.navbox {
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
 

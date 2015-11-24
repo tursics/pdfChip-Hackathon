@@ -1,17 +1,24 @@
 @charset "UTF-8";
 
 @font-face {
-    font-family: 'FreeUniversal';
-    src: url('../fonts/freeuniversal-regular.ttf');
+    font-family: FreeUniversal;
+    src: url(../fonts/freeuniversal-regular.ttf);
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'FreeUniversal';
-    src: url('../fonts/freeuniversal-bold.ttf');
+    font-family: FreeUniversal;
+    src: url(../fonts/freeuniversal-bold.ttf);
     font-weight: bold;
     font-style: normal;
+}
+
+@font-face {
+    font-family: FreeUniversal;
+    src: url(../fonts/freeuniversal-italic.ttf);
+    font-weight: normal;
+    font-style: italic;
 }
 
 body {
@@ -19,7 +26,7 @@ body {
 	color: black;
 	color: -cchip-cmyk(0.0, 0.0, 0.0, 1.0);
 	font-family: FreeUniversal;
-	font-size: 12pt;
+	font-size: 12pt;		
 }
 
 a {
@@ -30,18 +37,73 @@ a {
 	text-decoration: none;
 }
 
-.toc-1 {
-	font-size: 20pt;
-	font-weight: bold;
-}
-
 #coverpage {
 	page-break-after: always;
 	margin-left: auto; margin-right: auto;
 	text-align: center;
 }
 
+#coverimage {
+	max-height: 250mm;
+	max-width: 190mm;
+}
+
 .document-title {
 	font-size: 36pt;
 	font-weight: bold;
+	color: #6216af;
 }
+
+#toc {
+	margin: 20mm 20mm;
+}
+
+.toc-1-image {
+	width: 20mm;
+	height: 20mm;
+	object-fit: cover;
+	margin-right: 5mm;
+}
+
+.toc-1-item {
+	clear: both;
+	height: 20mm;
+}
+
+.toc-1-image, .toc-1-text {
+	float: left;
+}
+
+.toc-1-name {
+	font-size: 20pt;
+	font-weight: bold;
+	margin: 0;
+	margin-top: 1mm;
+	width: 100mm;
+	overflow: hidden;
+  	white-space: nowrap;
+  	text-overflow: ellipsis;
+
+}
+
+.toc-1-page {
+	font-size: 12pt;
+	font-style: italic;
+	line-height: 3mm;
+}
+
+.toc-1-big-link {
+	margin-bottom: 10mm;
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+

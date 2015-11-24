@@ -7,6 +7,7 @@
 function insertPage( wikipediaURL, callbackFn)
 {
 //	getWikipediaWikitext( wikipediaURL, function( title, content) {
+//	getWikipediaText( wikipediaURL, function( title, content) {
 	getWikipediaHTML( wikipediaURL, function( title, content) {
 		var theTitleElement = $( "#title" );
 
@@ -27,22 +28,38 @@ function insertPage( wikipediaURL, callbackFn)
 
 function insertContent( wikipediaURL, callbackFn)
 {
-	insertPage( wikipediaURL, function() {
-		getWikipediaLinks( wikipediaURL, function( title, list) {
-			var index = 0;
+	try {
+		insertPage( wikipediaURL, function() {
+			try {
+				getWikipediaLinks( wikipediaURL, function( title, list) {
+					try {
+						var index = 0;
 
-			function recursivePage()
-			{
-				++index;
-				if( index < list.length) {
-					insertPage( 'https://en.wikipedia.org/wiki/' + list[index], recursivePage);
-				} else {
-					callbackFn();
-				}
+						function recursivePage()
+						{
+							++index;
+							if( index < list.length) {
+								insertPage( 'https://en.wikipedia.org/wiki/' + list[index], recursivePage);
+							} else {
+								callbackFn();
+							}
+						}
+						if( list.length > 0) {
+							insertPage( 'https://en.wikipedia.org/wiki/' + list[index], recursivePage);
+						} else {
+							callbackFn();
+						}
+					} catch( x) {
+						callbackFn();
+					}
+				});
+			} catch( x) {
+				callbackFn();
 			}
-			insertPage( 'https://en.wikipedia.org/wiki/' + list[index], recursivePage);
 		});
-	});
+	} catch( x) {
+		callbackFn();
+	}
 }
 
 //-----------------------------------------------------------------------
@@ -55,7 +72,9 @@ if( typeof cchip === 'undefined') {
 	{
 		cchip.beginPrinting();
 		insertContent( baseLink, function() {
-			cchip.endPrinting();
+//			$( '#content').waitForImages( function() {
+				cchip.endPrinting();
+//			});
 		});
 	}
 }
