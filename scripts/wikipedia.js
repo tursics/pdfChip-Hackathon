@@ -19,7 +19,7 @@
 //     use content as you want
 // });
 
-var limitLinks = 1;
+var limitLinks = 20;
 
 function getAPIWikipediaURL( wikipediaURL, prop)
 {
