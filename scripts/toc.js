@@ -25,7 +25,7 @@ function printTOC( callbackFn)
 				var theToc = theTocs[theTocIndex];
 
 //				getOneRandomImage( 'https://en.wikipedia.org/wiki/' + theToc.content, function( imageURL) {
-imageURL = '';
+imageURL = 'https://upload.wikimedia.org/wikipedia/en/8/80/Wikipedia-logo-v2.svg';
 
 					// Create a big link
 					var theLink = $( '<a>', {
