@@ -4,9 +4,13 @@
 @page {
 	
 	/* Trim box set to A4 with the lower left corner at 10mm, 10mm */
-	/* Crop box set to the trim box */
 	-cchip-trimbox: 10mm 10mm 210mm 297mm;
+
+	/* Crop box set to the trim box */
 	-cchip-cropbox: 0mm 0mm 230mm 317mm;
+
+	/* Crop box set to different value */
+	/*-cchip-cropbox: 8mm 8mm 214mm 302mm;*/
 	
 	/* Bleedbox 6mm wider and higher than trim box and positioned 3mm, 3mm to the left and bottom */
 	-cchip-bleedbox: 7mm 7mm 216mm 303mm;
